@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy1XlcnnFHS_GIdzTz4CntmdcJayequwg&callback=initMap" async defer></script>
+    <script>
+      function initMap() {
+        const pickupLocation = { lat: -1.292066, lng: 36.821945}; // Replace with actual coordinates
+        const destination = { lat: -1.189310, lng: 37.116371 }; // Replace with actual coordinates
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: pickupLocation,
+        });
+        const pickupMarker = new google.maps.Marker({
+          position: pickupLocation,
+          map: map,
+          title: "Pickup Location",
+        });
+        const destinationMarker = new google.maps.Marker({
+          position: destination,
+          map: map,
+          title: "Destination",
+        });
+        const routePath = new google.maps.Polyline({
+          path: [pickupLocation, destination],
+          geodesic: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+        });
+        routePath.setMap(map);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+  </body>
+</html>
